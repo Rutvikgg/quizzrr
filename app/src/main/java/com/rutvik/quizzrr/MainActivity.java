@@ -1,12 +1,11 @@
 package com.rutvik.quizzrr;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,28 +15,42 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
-import com.rutvik.quizzrr.R;
 
 public class MainActivity extends Activity {
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     ImageView googleBtn;
+    private EditText Username;
+    private EditText password;
+    private Button loginbtn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.loginbtn);
+
+        EditText Username = findViewById(R.id.Username);
+        EditText Password = findViewById(R.id.Password);
+        Button loginbtn = findViewById(R.id.loginbtn);
         ImageView google_btn = findViewById(R.id.google_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
-            }
-        });
+            loginbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String username = Username.getText().toString();
+                    String password = Password.getText().toString();
+
+                    if (username.isEmpty() || password.isEmpty()) {
+                        Toast.makeText(MainActivity.this, "Please enter the details", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            });
+
         google_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,4 +95,5 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         startActivity(intent);
     }
+
 }

@@ -32,37 +32,20 @@
         android:textSize="40dp"/>
 
     <Button
-        android:id="@+id/createquiz_button"
-        android:layout_width="500dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="209dp"
-        android:backgroundTint="@color/black"
-        android:onClick="onButtonClick"
-        android:text="CREATE QUIZ"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        android:background="@drawable/round_button"/>
-
-    <Button
         android:id="@+id/takequiz_button"
         android:layout_width="500dp"
         android:layout_height="100dp"
         android:layout_below="@id/name"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="111dp"
+        android:layout_marginTop="224dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="393dp"
+        android:background="@drawable/round_button"
         android:backgroundTint="@color/black"
         android:text="TAKE A QUIZ"
         android:textColor="@color/white"
-        android:textSize="40dp"
-        android:background="@drawable/round_button"/>
+        android:textSize="40dp" />
 
 
 </RelativeLayout>
