@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -55,13 +56,14 @@ public class FourthActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
 
-        ansA.setBackgroundColor(Color.BLACK);
-        ansB.setBackgroundColor(Color.BLACK);
-        ansC.setBackgroundColor(Color.BLACK);
-        ansD.setBackgroundColor(Color.BLACK);
+        ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"));
+        ansA.setBackgroundTintList(colorStateList);
+        ansB.setBackgroundTintList(colorStateList);
+        ansC.setBackgroundTintList(colorStateList);
+        ansD.setBackgroundTintList(colorStateList);
 
         Button clickedButton = (Button) view;
-        if(clickedButton.getId()==R.id.submit_btn){
+        if(clickedButton.getId() == R.id.submit_btn){
             if(selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
                 score++;
             }
@@ -71,7 +73,8 @@ public class FourthActivity extends Activity implements View.OnClickListener{
 
         }else{
             selectedAnswer  = clickedButton.getText().toString();
-            clickedButton.setBackgroundColor(Color.MAGENTA);
+            ColorStateList checkedcolorStateList = ColorStateList.valueOf(Color.parseColor("#FF00FF"));
+            clickedButton.setBackgroundTintList(checkedcolorStateList);
 
         }
 
@@ -103,7 +106,7 @@ public class FourthActivity extends Activity implements View.OnClickListener{
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
+                .setPositiveButton("Home",(dialogInterface, i) -> restartQuiz() )
                 .setCancelable(false)
                 .show();
 
@@ -111,8 +114,10 @@ public class FourthActivity extends Activity implements View.OnClickListener{
     }
 
     void restartQuiz(){
+        Intent intent = new Intent(FourthActivity.this, SecondActivity.class);
+        startActivity(intent);
         score = 0;
-        currentQuestionIndex =0;
+        currentQuestionIndex = 0;
         loadNewQuestion();
     }
 
