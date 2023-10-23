@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
                         Toast.makeText(MainActivity.this, "Please enter the details", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("username", username);
                         startActivity(intent);
                     }
                 }
