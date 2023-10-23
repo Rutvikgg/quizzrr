@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "388172445484",
+    "firebase_url": "https://quizzrr-28cb1-default-rtdb.firebaseio.com",
+    "project_id": "quizzrr-28cb1",
+    "storage_bucket": "quizzrr-28cb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388172445484:android:60e25c56bddc9980789e89",
+        "android_client_info": {
+          "package_name": "com.rutvik.quizzrr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVZCdjoHga01-CjbftwGXEY4RFz7mWgzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388172445484:android:ad1d5958995984a2789e89",
+        "android_client_info": {
+          "package_name": "com.vivek.quizzrr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVZCdjoHga01-CjbftwGXEY4RFz7mWgzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
