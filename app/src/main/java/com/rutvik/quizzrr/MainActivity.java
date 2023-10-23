@@ -1,12 +1,15 @@
 package com.rutvik.quizzrr;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,29 +27,31 @@ public class MainActivity extends Activity {
     private EditText Username;
     private EditText password;
     private Button loginbtn;
-
+//    SharedPreferences sharedPreferences = getSharedPreferences("com.rutvik.quizzrr.SharedPreferences", Context.MODE_PRIVATE);
+//    SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        TextView google = findViewById(R.id.google);
         EditText Username = findViewById(R.id.Username);
         EditText Password = findViewById(R.id.Password);
         Button loginbtn = findViewById(R.id.loginbtn);
         ImageView google_btn = findViewById(R.id.google_btn);
+        google.setVisibility(View.GONE);
+        google_btn.setVisibility(View.GONE);
             loginbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String username = Username.getText().toString();
                     String password = Password.getText().toString();
 
-                    if (username.isEmpty() || password.isEmpty()) {
+                    if (username.equals("") || password.equals("")) {
                         Toast.makeText(MainActivity.this, "Please enter the details", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                        intent.putExtra("username", username);
                         startActivity(intent);
                     }
                 }

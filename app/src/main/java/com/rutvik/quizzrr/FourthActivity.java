@@ -106,7 +106,7 @@ public class FourthActivity extends Activity implements View.OnClickListener{
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
+                .setPositiveButton("Home",(dialogInterface, i) -> restartQuiz() )
                 .setCancelable(false)
                 .show();
 
@@ -116,9 +116,9 @@ public class FourthActivity extends Activity implements View.OnClickListener{
     void restartQuiz(){
         Intent intent = new Intent(FourthActivity.this, SecondActivity.class);
         startActivity(intent);
-//        score = 0;
-//        currentQuestionIndex = 0;
-//        loadNewQuestion();
+        score = 0;
+        currentQuestionIndex = 0;
+        loadNewQuestion();
     }
 
 }
