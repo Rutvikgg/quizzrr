@@ -17,20 +17,17 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 public class SecondActivity extends Activity {
-    TextView usernameTextView;
-//    SharedPreferences sharedPreferences = getSharedPreferences("com.rutvik.quizzrr.SharedPreferences", Context.MODE_PRIVATE);
-//    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        Button takequiz_button = findViewById(R.id.takequiz_button);
-        usernameTextView = findViewById(R.id.usernameTextView);
-//        String username = sharedPreferences.getString("username", null);
-//        usernameTextView.setText(username);
 
-        takequiz_button.setOnClickListener(new View.OnClickListener() {
+        Button quizname1_button = findViewById(R.id.quizname1_button);
+        Button quizname2_button = findViewById(R.id.quizname2_button);
+        Button quizname3_button = findViewById(R.id.quizname3_button);
+
+        quizname1_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
@@ -38,5 +35,20 @@ public class SecondActivity extends Activity {
             }
         });
 
+        quizname2_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SecondActivity.this, FourthActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        quizname3_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SecondActivity.this, FifthActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

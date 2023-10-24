@@ -18,88 +18,56 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends Activity {
 
-    GoogleSignInOptions gso;
-    GoogleSignInClient gsc;
-    ImageView googleBtn;
-    private EditText Username;
-    private EditText password;
-    private Button loginbtn;
-//    SharedPreferences sharedPreferences = getSharedPreferences("com.rutvik.quizzrr.SharedPreferences", Context.MODE_PRIVATE);
-//    SharedPreferences.Editor editor;
+    FirebaseAuth auth;
+    Button button,button1;
+    TextView textView;
+    FirebaseUser user;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView google = findViewById(R.id.google);
-        EditText Username = findViewById(R.id.Username);
-        EditText Password = findViewById(R.id.Password);
-        Button loginbtn = findViewById(R.id.loginbtn);
-        ImageView google_btn = findViewById(R.id.google_btn);
-        google.setVisibility(View.GONE);
-        google_btn.setVisibility(View.GONE);
-            loginbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String username = Username.getText().toString();
-                    String password = Password.getText().toString();
 
-                    if (username.equals("") || password.equals("")) {
-                        Toast.makeText(MainActivity.this, "Please enter the details", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                        startActivity(intent);
-                    }
-                }
-            });
-
-        google_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent loginIntent = new Intent(MainActivity.this, SecondActivity.class);
-            }
-        });
-
-        googleBtn = findViewById(R.id.google_btn);
-
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(this,gso);
-
-        googleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
-
-    }
-    void signIn(){
-        Intent signInIntent = gsc.getSignInIntent();
-        startActivityForResult(signInIntent,1000);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1000){
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
-            try {
-                task.getResult(ApiException.class);
-                navigateToSecondActivity();
-            } catch (ApiException e) {
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-            }
+        auth = FirebaseAuth.getInstance();
+        button = findViewById(R.id.logout_button);
+        button1 = findViewById(R.id.takequiz_button);
+        textView = findViewById(R.id.user_details);
+        user = auth.getCurrentUser();
+        if (user == null){
+            Intent intent = new Intent(getApplicationContext(),Login.class);
+            startActivity(intent);
+            finish();
         }
-    }
-    void navigateToSecondActivity(){
-        finish();
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        startActivity(intent);
+        else{
+            textView.setText(user.getEmail());
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(),Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(intent);
+            }
+   });
+
     }
 
 }

@@ -15,12 +15,12 @@ public class ThirdActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
-        Button button = findViewById(R.id.quizname1_button);
+        Button startButton = findViewById(R.id.startButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ThirdActivity.this, FourthActivity.class);
+                Intent intent = new Intent(ThirdActivity.this, SixthActivity.class);
                 startActivity(intent);
             }
         });
